@@ -45,44 +45,44 @@ def input_pdf_setup(uploaded_file):
 # Streamlit App
 
 st.set_page_config(page_title="ATS Resume Scanner")
-st.header("Application Tracking System")
-input_text = st.text_area("Job Description: ", key="input")
-uploaded_file = st.file_uploader("Upload your resume(PDF)...", type=["pdf"])
+st.header("Cvyat")
+input_text = st.text_area(" : الوصف الكامل للوظيفة", key="input")
+uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF)...", type=["pdf"])
 
 if 'resume' not in st.session_state:
     st.session_state.resume = None
 
 if uploaded_file is not None:
-    st.write("PDF Uploaded Successfully")
+    st.write("تم تحميل ملف الـ PDF بنجاح.")
     st.session_state.resume = uploaded_file
 
 col1, col2, col3 = st.columns(3, gap="medium")
 
 with col1:
-    submit1 = st.button("Tell Me About the Resume")
+    submit1 = st.button("تحليل شامل للسيرة الذاتية")
 
 with col2:
-    submit2 = st.button("Get Keywords")
+    submit2 = st.button("استخراج الكلمات المفتاحية")
 
 with col3:
-    submit3 = st.button("Percentage match")
+    submit3 = st.button("تطابق السيرة الذاتية مع نظام ATS")
 
 input_prompt1 = """
- You are an experienced Technical Human Resource Manager, your task is to review the provided resume against the job description. 
- Please share your professional evaluation on whether the candidate's profile aligns with the role. 
- Highlight the strengths and weaknesses of the applicant in relation to the specified job requirements.
+أنت مدير موارد بشرية تقني ذو خبرة، ومهمتك هي مراجعة السيرة الذاتية المقدمة مقارنةً بوصف الوظيفة.
+يرجى مشاركة تقييمك المهني حول ما إذا كان ملف المرشح يتماشى مع متطلبات الدور.
+قم بتسليط الضوء على نقاط القوة والضعف للمتقدم فيما يتعلق بمتطلبات الوظيفة المحددة.
 """
 
 input_prompt2 = """
-As an expert ATS (Applicant Tracking System) scanner with an in-depth understanding of AI and ATS functionality, 
-your task is to evaluate a resume against a provided job description. Please identify the specific skills and keywords 
-necessary to maximize the impact of the resume and provide response in json format as {Technical Skills:[], Analytical Skills:[], Soft Skills:[]}.
-Note: Please do not make up the answer only answer from job description provided"""
+بصفتك خبيرًا في أنظمة تتبع المتقدمين (ATS) ولديك فهم عميق لوظائف الذكاء الاصطناعي و ATS،
+مهمتك هي تقييم السيرة الذاتية مقارنة بوصف الوظيفة المقدم. يرجى تحديد المهارات والكلمات الرئيسية الضرورية
+لزيادة تأثير السيرة الذاتية وتقديم الإجابة بتنسيق JSON كما يلي: {المهارات التقنية:[], المهارات التحليلية:[], المهارات الشخصية:[]}.
+ملاحظة: يرجى عدم اختراع الإجابة، فقط الإجابة بناءً على وصف الوظيفة المقدم."""
 
 input_prompt3 = """
-You are a skilled ATS (Applicant Tracking System) scanner with a deep understanding of data science and ATS functionality, 
-your task is to evaluate the resume against the provided job description. Give me the percentage of match if the resume matches
-the job description. First the output should come as percentage and then keywords missing and last final thoughts.
+أنت خبير في أنظمة تتبع المتقدمين (ATS) ولديك فهم عميق لعلوم البيانات ووظائف ATS،
+مهمتك هي تقييم السيرة الذاتية مقارنة بوصف الوظيفة المقدم. يجب أن تكون النتيجة أولًا كنسبة مئوية من المطابقة،
+ثم الكلمات الرئيسية المفقودة وأخيرًا الأفكار النهائية.
 """
 
 if submit1:
@@ -92,7 +92,7 @@ if submit1:
         st.subheader("The Response is")
         st.write(response)
     else:
-        st.write("Please upload the resume")
+        st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
 
 elif submit2:
     if st.session_state.resume is not None:
@@ -104,7 +104,7 @@ elif submit2:
             st.write(f"Analytical Skills: {', '.join(response['Analytical Skills'])}.")
             st.write(f"Soft Skills: {', '.join(response['Soft Skills'])}.")
     else:
-        st.write("Please upload the resume")
+        st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
 
 elif submit3:
     if st.session_state.resume is not None:
@@ -113,4 +113,4 @@ elif submit3:
         st.subheader("The Response is")
         st.write(response)
     else:
-        st.write("Please upload the resume")
+        st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
