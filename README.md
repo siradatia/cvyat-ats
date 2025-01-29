@@ -36,3 +36,7 @@ pip install streamlit-arabic-support-wrapper
    ```
    $ streamlit run streamlit_app.py
    ```
+
+   git add .
+   git commit -m "Resolved merge conflicts"
+git push -u origin main

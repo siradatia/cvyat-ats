@@ -5,7 +5,6 @@ import json
 import base64
 import google.generativeai as genai
 
-
 # AIzaSyALL7qeWD1wQylmcIuBd4tzz6P-lfzAt1Y
 #AIzaSyALL7qeWD1wQylmcIuBd4tzz6P-lfzAt1Y
 #genai.configure(api_key=st.secrets.GOOGLE_API_KEY)
@@ -50,6 +49,16 @@ st.set_page_config(page_title="ATS Resume Scanner")
 st.header("Cvyat")
 input_text = st.text_area(" : الوصف الكامل للوظيفة", key="input")
 uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF)...", type=["pdf"])
+
+# 3. إخفاء الهيدر والفوتر باستخدام CSS
+hide_streamlit_style = """
+<style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 if 'resume' not in st.session_state:
     st.session_state.resume = None
@@ -117,12 +126,3 @@ elif submit3:
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
-
-hide_st_style = """
-            <style>
-            #MainMenu {display: none;}
-            footer {display: none;}
-            header {display: none;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
