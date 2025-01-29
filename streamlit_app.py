@@ -56,6 +56,16 @@ hide_streamlit_style = """
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+
+
+        /* إخفاء الفوتر الرئيسي */
+    footer {visibility: hidden !important;}
+
+    /* إخفاء الفوتر الإضافي (إن وُجد) */
+    .st-emotion-cache-cio0dv {display: none !important;}
+    
+    /* إخفاء مساحة الفوتر بالكامل */
+    .st-emotion-cache-1dp5vir {height: 0px !important;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -126,15 +136,4 @@ elif submit3:
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
-
-
-        hide_footer_js = """
-<script>
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            document.querySelectorAll('footer').forEach(e => e.remove());
-        }, 100);
-    });
-</script>
-"""
-st.components.v1.html(hide_footer_js)
+        
