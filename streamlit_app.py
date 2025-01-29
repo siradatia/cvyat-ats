@@ -53,9 +53,14 @@ uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF).
 # 3. إخفاء الهيدر والفوتر باستخدام CSS
 hide_streamlit_style = """
 <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    /* تعديلات خاصة لعناصر Streamlit */
+    .stTextArea textarea { padding-right: 15px !important; }
+    .stButton>button { margin-right: auto !important; }
+    .stFileUploader { text-align: right !important; }
+    .stSelectbox select { padding-right: 20px !important; }
+    
+    /* إخفاء العناصر غير المرغوبة */
+    #MainMenu, footer, header { visibility: hidden !important; }
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
