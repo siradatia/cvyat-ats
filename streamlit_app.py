@@ -42,7 +42,7 @@ def input_pdf_setup(uploaded_file):
         ]
         return pdf_parts
     else:
-        raise FileNotFoundError("No file uploaded")
+        raise FileNotFoundError("لا توجد سيرة ذاتية مرفوعة")
 
 # Streamlit App
 
@@ -92,7 +92,7 @@ if submit1:
     if st.session_state.resume is not None:
         pdf_content = input_pdf_setup(st.session_state.resume)
         response = get_gemini_response(input_prompt1, pdf_content, input_text)
-        st.subheader("The Response is")
+        st.subheader("يتم الآن تحليل المعلومات...")
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
@@ -101,7 +101,7 @@ elif submit2:
     if st.session_state.resume is not None:
         pdf_content = input_pdf_setup(st.session_state.resume)
         response = get_gemini_response_keywords(input_prompt2, pdf_content, input_text)
-        st.subheader("Skills are:")
+        st.subheader(":المهارات هي")
         if response is not None:
             st.write(f"المهارات التقنية: {', '.join(response['المهارات التقنية'])}.")
             st.write(f"المهارات التحليلية: {', '.join(response['المهارات التحليلية'])}.")
@@ -113,7 +113,7 @@ elif submit3:
     if st.session_state.resume is not None:
         pdf_content = input_pdf_setup(st.session_state.resume)
         response = get_gemini_response(input_prompt3, pdf_content, input_text)
-        st.subheader("The Response is")
+        st.subheader("يتم الآن تحليل المعلومات...")
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
