@@ -5,11 +5,13 @@ import json
 import base64
 import google.generativeai as genai
 
+
 # AIzaSyALL7qeWD1wQylmcIuBd4tzz6P-lfzAt1Y
 #AIzaSyALL7qeWD1wQylmcIuBd4tzz6P-lfzAt1Y
 #genai.configure(api_key=st.secrets.GOOGLE_API_KEY)
 
 genai.configure(api_key="AIzaSyALL7qeWD1wQylmcIuBd4tzz6P-lfzAt1Y")
+
 
 # Define cached functions
 @st.cache_data()
@@ -115,3 +117,12 @@ elif submit3:
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
+
+hide_st_style = """
+            <style>
+            #MainMenu {display: none;}
+            footer {display: none;}
+            header {display: none;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)

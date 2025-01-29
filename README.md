@@ -6,6 +6,25 @@ A simple Streamlit app that answers questions about an uploaded document via Ope
 
 ### How to run it on your own machine
 
+```
+python3 -m venv myenv
+source myenv/bin/activate
+pip install --upgrade pip
+pip install streamlit
+
+brew install poppler
+
+
+Install the required dependencies:
+```
+pip install -r requirements.txt
+```
+Run the Streamlit app:
+```
+streamlit run app.py
+```
+pip install streamlit-arabic-support-wrapper
+
 1. Install the requirements
 
    ```
