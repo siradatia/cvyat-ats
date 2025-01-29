@@ -56,16 +56,6 @@ hide_streamlit_style = """
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-
-
-        /* إخفاء الفوتر الرئيسي */
-    footer {visibility: hidden !important;}
-
-    /* إخفاء الفوتر الإضافي (إن وُجد) */
-    .st-emotion-cache-cio0dv {display: none !important;}
-    
-    /* إخفاء مساحة الفوتر بالكامل */
-    .st-emotion-cache-1dp5vir {height: 0px !important;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
