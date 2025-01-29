@@ -57,7 +57,7 @@ rtl_css = """
     * {
         direction: rtl !important;
         text-align: right !important;
-        font-family: 'Arial', sans-serif !important;
+        font-family: 'cvyat_font', sans-serif !important;
     }
     
     /* تعديلات خاصة لعناصر Streamlit */
