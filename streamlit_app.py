@@ -77,7 +77,8 @@ input_prompt2 = """
 بصفتك خبيرًا في أنظمة تتبع المتقدمين (ATS) ولديك فهم عميق لوظائف الذكاء الاصطناعي و ATS،
 مهمتك هي تقييم السيرة الذاتية مقارنة بوصف الوظيفة المقدم. يرجى تحديد المهارات والكلمات الرئيسية الضرورية
 لزيادة تأثير السيرة الذاتية وتقديم الإجابة بتنسيق JSON كما يلي: {المهارات التقنية:[], المهارات التحليلية:[], المهارات الشخصية:[]}.
-ملاحظة: يرجى عدم اختراع الإجابة، فقط الإجابة بناءً على وصف الوظيفة المقدم."""
+ملاحظة: يرجى عدم اختراع الإجابة، فقط الإجابة بناءً على وصف الوظيفة المقدم.
+"""
 
 input_prompt3 = """
 أنت خبير في أنظمة تتبع المتقدمين (ATS) ولديك فهم عميق لعلوم البيانات ووظائف ATS،
@@ -100,9 +101,9 @@ elif submit2:
         response = get_gemini_response_keywords(input_prompt2, pdf_content, input_text)
         st.subheader("Skills are:")
         if response is not None:
-            st.write(f"Technical Skills: {', '.join(response['Technical Skills'])}.")
-            st.write(f"Analytical Skills: {', '.join(response['Analytical Skills'])}.")
-            st.write(f"Soft Skills: {', '.join(response['Soft Skills'])}.")
+            st.write(f"المهارات التقنية: {', '.join(response['المهارات التقنية'])}.")
+            st.write(f"المهارات التحليلية: {', '.join(response['المهارات التحليلية'])}.")
+            st.write(f"المهارات الشخصية: {', '.join(response['المهارات الشخصية'])}.")
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
 
