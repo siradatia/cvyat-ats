@@ -126,3 +126,15 @@ elif submit3:
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
+
+
+        hide_footer_js = """
+<script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.querySelectorAll('footer').forEach(e => e.remove());
+        }, 100);
+    });
+</script>
+"""
+st.components.v1.html(hide_footer_js)
