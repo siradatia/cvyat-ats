@@ -23,7 +23,7 @@ def get_gemini_response(input, pdf_content, prompt):
 def get_gemini_response_keywords(input, pdf_content, prompt):
     model = genai.GenerativeModel('gemini-1.5-flash')
     response = model.generate_content([input, pdf_content[0], prompt])
-    return json.loads(response.text[8:-4])
+    return response.text
 
 @st.cache_data()
 def input_pdf_setup(uploaded_file):
@@ -79,16 +79,15 @@ if uploaded_file is not None:
     st.write("تم تحميل ملف الـ PDF بنجاح.")
     st.session_state.resume = uploaded_file
 
-col1, col2, col3 = st.columns(3, gap="medium")
+col1, col2 = st.columns(2, gap="medium")
 
 with col1:
-    submit1 = st.button("تحليل شامل للسيرة الذاتية")
+    submit1 = st.button("تقييم السيرة الذاتية")
 
 with col2:
-    submit2 = st.button("استخراج الكلمات المفتاحية")
+    submit2 = st.button("فحص مطابقة السيرة الذاتية لنضام ATS")
 
-with col3:
-    submit3 = st.button("تطابق السيرة الذاتية مع نظام ATS")
+    
 
 input_prompt1 = """
 أنت مدير موارد بشرية تقني ذو خبرة، ومهمتك هي مراجعة السيرة الذاتية المقدمة مقارنةً بوصف الوظيفة.
@@ -97,23 +96,16 @@ input_prompt1 = """
 """
 
 input_prompt2 = """
-بصفتك خبيرًا في أنظمة تتبع المتقدمين (ATS) ولديك فهم عميق لوظائف الذكاء الاصطناعي و ATS،
-مهمتك هي تقييم السيرة الذاتية مقارنة بوصف الوظيفة المقدم. يرجى تحديد المهارات والكلمات الرئيسية الضرورية
-لزيادة تأثير السيرة الذاتية وتقديم الإجابة بتنسيق JSON كما يلي: {المهارات التقنية:[], المهارات التحليلية:[], المهارات الشخصية:[]}.
-ملاحظة: يرجى عدم اختراع الإجابة، فقط الإجابة بناءً على وصف الوظيفة المقدم.
-"""
-
-input_prompt3 = """
 أنت خبير في أنظمة تتبع المتقدمين (ATS) ولديك فهم عميق لعلوم البيانات ووظائف ATS،
 مهمتك هي تقييم السيرة الذاتية مقارنة بوصف الوظيفة المقدم. يجب أن تكون النتيجة أولًا كنسبة مئوية من المطابقة،
-ثم الكلمات الرئيسية المفقودة وأخيرًا الأفكار النهائية.
+ثم الكلمات الرئيسية المفقودة وأخيرًا الأفكار النهائية متضمنةالأخطاء وطريقة تصحيحها
 """
 
 if submit1:
     if st.session_state.resume is not None:
         pdf_content = input_pdf_setup(st.session_state.resume)
         response = get_gemini_response(input_prompt1, pdf_content, input_text)
-        st.subheader("يتم الآن تحليل المعلومات...")
+     #   st.subheader("يتم الآن تحليل المعلومات...")
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
@@ -121,20 +113,8 @@ if submit1:
 elif submit2:
     if st.session_state.resume is not None:
         pdf_content = input_pdf_setup(st.session_state.resume)
-        response = get_gemini_response_keywords(input_prompt2, pdf_content, input_text)
-        st.subheader(":المهارات هي")
-        if response is not None:
-            st.write(f"المهارات التقنية: {', '.join(response['المهارات التقنية'])}.")
-            st.write(f"المهارات التحليلية: {', '.join(response['المهارات التحليلية'])}.")
-            st.write(f"المهارات الشخصية: {', '.join(response['المهارات الشخصية'])}.")
-    else:
-        st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
-
-elif submit3:
-    if st.session_state.resume is not None:
-        pdf_content = input_pdf_setup(st.session_state.resume)
-        response = get_gemini_response(input_prompt3, pdf_content, input_text)
-        st.subheader("يتم الآن تحليل المعلومات...")
+        response = get_gemini_response(input_prompt2, pdf_content, input_text)
+    #    st.subheader("يتم الآن تحليل المعلومات...")
         st.write(response)
     else:
         st.write("من فضلك قم برفع سيرتك الذاتية لتحليلها")
