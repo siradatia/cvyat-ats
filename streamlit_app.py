@@ -47,8 +47,9 @@ def input_pdf_setup(uploaded_file):
 
 st.set_page_config(page_title="ATS Resume Scanner")
 
-input_text = st.text_area(" : الوصف الكامل للوظيفة", key="input")
-uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF)...", type=["pdf"])
+input_text = st.text_area(" الوصف الكامل للوظيفة", key="input")
+uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF)...", type=["pdf"],
+                     help="الحد الأقصى لحجم الملف: 200MB • PDF فقط" )
 
 # 3. إخفاء الهيدر والفوتر باستخدام CSS
 rtl_css = """
