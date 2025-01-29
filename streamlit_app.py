@@ -58,7 +58,6 @@ rtl_css = """
     * {
         direction: rtl !important;
         text-align: right !important;
-        font-family: 'cvyat_font', sans-serif !important;
     }
     
     /* تعديلات خاصة لعناصر Streamlit */
@@ -68,7 +67,7 @@ rtl_css = """
     .stSelectbox select { padding-right: 20px !important; }
     
     /* إخفاء العناصر غير المرغوبة */
-    #MainMenu, footer, header { visibility: hidden !important; }
+    #MainMenu, footer, header, _profileContainer_gzau3_53 { visibility: hidden !important; }
 </style>
 """
 st.markdown(rtl_css, unsafe_allow_html=True)
