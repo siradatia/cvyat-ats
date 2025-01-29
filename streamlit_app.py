@@ -51,8 +51,15 @@ input_text = st.text_area(" : الوصف الكامل للوظيفة", key="inpu
 uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF)...", type=["pdf"])
 
 # 3. إخفاء الهيدر والفوتر باستخدام CSS
-hide_streamlit_style = """
+rtl_css = """
 <style>
+    /* تطبيق RTL على كل العناصر */
+    * {
+        direction: rtl !important;
+        text-align: right !important;
+        font-family: 'Arial', sans-serif !important;
+    }
+    
     /* تعديلات خاصة لعناصر Streamlit */
     .stTextArea textarea { padding-right: 15px !important; }
     .stButton>button { margin-right: auto !important; }
@@ -63,7 +70,7 @@ hide_streamlit_style = """
     #MainMenu, footer, header { visibility: hidden !important; }
 </style>
 """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(rtl_css, unsafe_allow_html=True)
 
 if 'resume' not in st.session_state:
     st.session_state.resume = None
