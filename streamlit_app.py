@@ -45,10 +45,8 @@ def input_pdf_setup(uploaded_file):
 
 # Streamlit App
 
-st.set_page_config(page_title="ATS Resume Scanner",
-            layout="centered",
-             initial_sidebar_state="auto")
-st.header("Cvyat")
+st.set_page_config(page_title="ATS Resume Scanner")
+
 input_text = st.text_area(" : الوصف الكامل للوظيفة", key="input")
 uploaded_file = st.file_uploader("قم برفع سيرتك الذاتية (PDF)...", type=["pdf"])
 
